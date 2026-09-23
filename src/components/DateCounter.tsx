@@ -15,22 +15,22 @@ type Action =
 
 function reducer(state: State, action: Action) {
   switch (action.type) {
+    case "setStep":
+      return { ...state, step: action.payload };
+
+    case "setCount":
+      return { ...state, count: action.payload };
     case "inc":
       return { ...state, count: state.count + state.step };
     case "dec":
       return { ...state, count: state.count - state.step };
 
-    case "setStep":
-      return { ...state, step: action.payload };
-    case "setCount":
-      return { ...state, count: action.payload };
     case "reset":
       return initialState;
 
     default:
-      break;
+      throw new Error(`un known action`);
   }
-  return state;
 }
 
 const initialState: State = {
@@ -46,28 +46,6 @@ function DateCounter() {
   const date = new Date("june 21 2027");
   date.setDate(date.getDate() + count);
 
-  // Handlers
-  // const dec = function () {
-  //   // setCount((count) => count - step);
-  // };
-
-  // const inc = function () {
-  //   // setCount((count) => count + step);
-  // };
-
-  // const defineCount = function () {
-  //   // setCount(Number(e.target.value));
-  // };
-
-  // const defineStep = function (e: React.ChangeEvent<HTMLInputElement>) {
-  //   // setStep(Number(e.target.value));
-  // };
-
-  const reset = function () {
-    // setCount(0);
-    // setStep(1);
-  };
-
   return (
     <div className="counter">
       <div>
@@ -76,9 +54,14 @@ function DateCounter() {
           min="0"
           max="10"
           value={step}
-          onChange={(e) =>
-            dispatch({ type: "setStep", payload: Number(e.target.value) })
-          }
+          onKeyDown={(e) => {
+            if (e.key === "-") e.preventDefault();
+          }}
+          onChange={(e) => {
+            const value = Number.isNaN(e.target.value);
+            if (value) return;
+            dispatch({ type: "setStep", payload: Number(e.target.value) });
+          }}
         />
         <span>{step}</span>
       </div>
