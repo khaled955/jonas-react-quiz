@@ -1,4 +1,4 @@
-type Question = {
+ export type Question = {
   question: string;
   options: string[];
   correctOption: number;
