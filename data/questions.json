@@ -1,139 +1,646 @@
 {
   "questions": [
     {
-      "question": "Which is the most popular JavaScript framework?",
-      "options": ["Angular", "React", "Svelte", "Vue"],
-      "correctOption": 1,
-      "points": 10
-    },
-    {
-      "question": "Which company invented React?",
-      "options": ["Google", "Apple", "Netflix", "Facebook"],
-      "correctOption": 3,
-      "points": 10
-    },
-    {
-      "question": "What's the fundamental building block of React apps?",
-      "options": ["Components", "Blocks", "Elements", "Effects"],
-      "correctOption": 0,
-      "points": 10
-    },
-    {
-      "question": "What's the name of the syntax we use to describe the UI in React components?",
-      "options": ["FBJ", "Babel", "JSX", "ES2015"],
+      "question": "Which company created React?",
+      "options": ["Google", "Microsoft", "Facebook", "Amazon"],
       "correctOption": 2,
-      "points": 10
+      "points": 10,
+      "level": "easy"
     },
     {
-      "question": "How does data flow naturally in React apps?",
+      "question": "What is the basic building block of a React application?",
+      "options": ["Components", "Controllers", "Models", "Services"],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What syntax is commonly used to describe UI in React?",
+      "options": ["HTMLX", "JSX", "XML", "TSX only"],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which hook is used to add state to a functional component?",
+      "options": ["useEffect", "useRef", "useState", "useContext"],
+      "correctOption": 2,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "How do you pass data from a parent component to a child component?",
+      "options": ["State", "Props", "Effects", "Refs"],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which hook is commonly used to perform side effects?",
+      "options": ["useEffect", "useState", "useMemo", "useId"],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What does useState return?",
       "options": [
-        "From parents to children",
-        "From children to parents",
-        "Both ways",
-        "The developers decides"
+        "Only the state value",
+        "Only a setter function",
+        "A state value and a setter function",
+        "A state object"
+      ],
+      "correctOption": 2,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which event prop is used for a button click in React?",
+      "options": ["onclick", "onClick", "click", "onPress"],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which prop helps React identify elements in a rendered list?",
+      "options": ["id", "name", "key", "index"],
+      "correctOption": 2,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What is the correct way to render a variable called name inside JSX?",
+      "options": ["{{name}}", "{name}", "${name}", "<name>"],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which operator is commonly used for conditional rendering when you only want to render something if a condition is true?",
+      "options": ["&&", "??", "**", "=>"],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Can a React component return JSX?",
+      "options": ["Yes", "No", "Only class components", "Only in development"],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What is used to update a state value created with useState?",
+      "options": [
+        "The state variable directly",
+        "The setter function",
+        "A prop",
+        "A ref"
+      ],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "In React, data normally flows in which direction?",
+      "options": [
+        "Parent to child",
+        "Child to parent automatically",
+        "Both directions automatically",
+        "There is no data flow"
       ],
       "correctOption": 0,
-      "points": 10
+      "points": 10,
+      "level": "easy"
     },
     {
-      "question": "How to pass data into a child component?",
-      "options": ["State", "Props", "PropTypes", "Parameters"],
-      "correctOption": 1,
-      "points": 10
-    },
-    {
-      "question": "When to use derived state?",
+      "question": "What does React Fragment allow you to do?",
       "options": [
-        "Whenever the state should not trigger a re-render",
-        "Whenever the state can be synchronized with an effect",
-        "Whenever the state should be accessible to all components",
-        "Whenever the state can be computed from another state variable"
+        "Store state",
+        "Group elements without adding an extra DOM element",
+        "Fetch data",
+        "Create CSS styles"
       ],
-      "correctOption": 3,
-      "points": 30
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
     },
     {
-      "question": "What triggers a UI re-render in React?",
+      "question": "Which attribute is used instead of class in JSX?",
+      "options": ["cssClass", "className", "styleName", "classes"],
+      "correctOption": 1,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which JavaScript method is commonly used to render an array of items?",
+      "options": ["filter", "find", "map", "reduce"],
+      "correctOption": 2,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What happens when React state is updated?",
       "options": [
-        "Running an effect",
-        "Passing props",
+        "React may re-render the component",
+        "The browser reloads",
+        "The component is deleted",
+        "Nothing happens"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "What are props in React?",
+      "options": [
+        "Data passed to a component",
+        "Global variables",
+        "CSS properties",
+        "Database records"
+      ],
+      "correctOption": 0,
+      "points": 10,
+      "level": "easy"
+    },
+    {
+      "question": "Which hook can store a mutable value without causing a re-render when the value changes?",
+      "options": ["useState", "useEffect", "useRef", "useContext"],
+      "correctOption": 2,
+      "points": 10,
+      "level": "easy"
+    },
+
+    {
+      "question": "When should you use a functional state update?",
+      "options": [
+        "When the new state depends on the previous state",
+        "Whenever state is a string",
+        "Only inside useEffect",
+        "Only for arrays"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What happens when useEffect has no dependency array?",
+      "options": [
+        "It runs only once",
+        "It runs after every render",
+        "It never runs",
+        "It runs only when the component unmounts"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What does useEffect with an empty dependency array normally mean?",
+      "options": [
+        "Run after every render",
+        "Run after the initial render",
+        "Never run",
+        "Run only when state changes"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is the main purpose of an effect cleanup function?",
+      "options": [
+        "Render another component",
+        "Clean up resources created by the effect",
+        "Update props",
+        "Reset all application state"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "Which is a good use case for useRef?",
+      "options": [
+        "A value that should always trigger rendering",
+        "Accessing a DOM element",
+        "Replacing all state",
+        "Rendering a list"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "Why should state generally not be mutated directly?",
+      "options": [
+        "React relies on state updates to correctly schedule rendering",
+        "JavaScript does not allow mutation",
+        "It always causes an infinite loop",
+        "It deletes the component"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is derived state?",
+      "options": [
+        "State stored in localStorage",
+        "A value that can be calculated from existing state or props",
+        "State stored on the server",
+        "State created by useRef"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "Which hook is useful when state logic involves multiple related actions?",
+      "options": ["useId", "useReducer", "useRef", "useEffect"],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What does dispatch usually receive when using useReducer?",
+      "options": ["A JSX element", "An action", "A component", "A CSS class"],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is the purpose of the dependency array in useEffect?",
+      "options": [
+        "To style the effect",
+        "To control when the effect re-synchronizes",
+        "To store component state",
+        "To define component props"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "Why should list keys be stable and unique among siblings?",
+      "options": [
+        "To make CSS work",
+        "To help React identify items between renders",
+        "To make arrays immutable",
+        "To prevent API requests"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is lifting state up?",
+      "options": [
+        "Moving state to a common parent component",
+        "Moving state to localStorage",
+        "Deleting component state",
+        "Converting state into a ref"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What happens when a useRef value changes?",
+      "options": [
+        "It always causes a re-render",
+        "It does not cause a re-render by itself",
+        "The component unmounts",
+        "The browser refreshes"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What does the cleanup function of an effect run before?",
+      "options": [
+        "Only the first render",
+        "A relevant effect re-run and component unmount",
+        "Every event handler",
+        "Every state declaration"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is a controlled input?",
+      "options": [
+        "An input whose value is controlled by React state",
+        "An input without a value",
+        "An input controlled only by CSS",
+        "An input that cannot change"
+      ],
+      "correctOption": 0,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "Which technique lets a child component communicate an event back to its parent?",
+      "options": [
+        "Mutating parent props",
+        "Passing a callback function as a prop",
+        "Using document.querySelector",
+        "Reloading the page"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What does lazy initialization with useState help avoid?",
+      "options": [
+        "Calling an expensive initializer on every render",
         "Updating state",
-        "Adding event listeners to DOM elements"
-      ],
-      "correctOption": 2,
-      "points": 20
-    },
-    {
-      "question": "When do we directly \"touch\" the DOM in React?",
-      "options": [
-        "When we need to listen to an event",
-        "When we need to change the UI",
-        "When we need to add styles",
-        "Almost never"
-      ],
-      "correctOption": 3,
-      "points": 20
-    },
-    {
-      "question": "In what situation do we use a callback to update state?",
-      "options": [
-        "When updating the state will be slow",
-        "When the updated state is very data-intensive",
-        "When the state update should happen faster",
-        "When the new state depends on the previous state"
-      ],
-      "correctOption": 3,
-      "points": 30
-    },
-    {
-      "question": "If we pass a function to useState, when will that function be called?",
-      "options": [
-        "On each re-render",
-        "Each time we update the state",
-        "Only on the initial render",
-        "The first time we update the state"
-      ],
-      "correctOption": 2,
-      "points": 30
-    },
-    {
-      "question": "Which hook to use for an API request on the component's initial render?",
-      "options": ["useState", "useEffect", "useRef", "useReducer"],
-      "correctOption": 1,
-      "points": 10
-    },
-    {
-      "question": "Which variables should go into the useEffect dependency array?",
-      "options": [
-        "Usually none",
-        "All our state variables",
-        "All state and props referenced in the effect",
-        "All variables needed for clean up"
-      ],
-      "correctOption": 2,
-      "points": 30
-    },
-    {
-      "question": "An effect will always run on the initial render.",
-      "options": [
-        "True",
-        "It depends on the dependency array",
-        "False",
-        "In depends on the code in the effect"
+        "Rendering JSX",
+        "Using event handlers"
       ],
       "correctOption": 0,
-      "points": 30
+      "points": 20,
+      "level": "medium"
     },
     {
-      "question": "When will an effect run if it doesn't have a dependency array?",
+      "question": "What should you usually do when updating an object stored in state?",
       "options": [
-        "Only when the component mounts",
-        "Only when the component unmounts",
-        "The first time the component re-renders",
-        "Each time the component is re-rendered"
+        "Mutate the existing object",
+        "Create a new object containing the changes",
+        "Use document.getElementById",
+        "Reload the component"
       ],
-      "correctOption": 3,
-      "points": 20
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What should you usually do when adding an item to an array stored in state?",
+      "options": [
+        "Push directly into the existing state array",
+        "Create a new array containing the new item",
+        "Change array.length manually",
+        "Store the item in a DOM element"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+    {
+      "question": "What is the main purpose of React Context?",
+      "options": [
+        "To perform HTTP requests",
+        "To share values with components without passing props through every intermediate level",
+        "To replace JSX",
+        "To create CSS animations"
+      ],
+      "correctOption": 1,
+      "points": 20,
+      "level": "medium"
+    },
+
+    {
+      "question": "Why can using an array index as a key cause bugs when list items are reordered?",
+      "options": [
+        "Indexes cannot be numbers",
+        "The key can become associated with a different item",
+        "React does not support array indexes",
+        "It prevents the list from rendering"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What problem can occur if an effect updates a state value that is also a dependency of that effect without a stopping condition?",
+      "options": [
+        "The state becomes read-only",
+        "An infinite update loop",
+        "React ignores the effect",
+        "The component becomes static"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why is it often unnecessary to store a calculated value in state?",
+      "options": [
+        "Calculated values cannot be rendered",
+        "It can duplicate state and create synchronization problems",
+        "React state only supports strings",
+        "Calculated values cannot change"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is a stale closure in React commonly associated with?",
+      "options": [
+        "A function using values captured from an older render",
+        "A deleted component",
+        "Invalid JSX syntax",
+        "A missing CSS class"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is the main purpose of useMemo?",
+      "options": [
+        "To memoize the result of a calculation",
+        "To perform side effects",
+        "To create DOM references",
+        "To replace useState"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is the main purpose of useCallback?",
+      "options": [
+        "To memoize a function definition between renders",
+        "To fetch data automatically",
+        "To update the DOM directly",
+        "To create state"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "When is React.memo most useful?",
+      "options": [
+        "When you want to prevent every state update",
+        "When a component often receives unchanged props and avoiding its re-render is beneficial",
+        "When you need to perform a side effect",
+        "When you need a DOM reference"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why can defining a new object inline as a prop affect memoized components?",
+      "options": [
+        "Objects cannot be props",
+        "A new object reference is created on each render",
+        "React converts the object into a string",
+        "The object becomes global"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is reconciliation in React?",
+      "options": [
+        "The process React uses to determine what needs to change in the UI",
+        "The process of fetching data",
+        "The process of creating CSS",
+        "The process of compiling TypeScript"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why should render logic remain pure?",
+      "options": [
+        "The same inputs should produce the same JSX without unintended side effects",
+        "Pure functions execute only once",
+        "React cannot call impure functions",
+        "Pure functions do not use props"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What does React Strict Mode help detect during development?",
+      "options": [
+        "Potential problems such as impure rendering and missing effect cleanup",
+        "Only CSS errors",
+        "Only TypeScript errors",
+        "Network speed problems"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why might an effect appear to run twice on initial mount in development under Strict Mode?",
+      "options": [
+        "React performs an extra development-only setup and cleanup cycle to help detect bugs",
+        "The browser always renders React twice",
+        "useEffect always executes twice",
+        "The dependency array is ignored"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is batching in React?",
+      "options": [
+        "Grouping multiple state updates to reduce unnecessary renders",
+        "Combining multiple components into one file",
+        "Running multiple effects in parallel",
+        "Sending multiple HTTP requests"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why might logging state immediately after calling its setter show the old value?",
+      "options": [
+        "The setter is broken",
+        "The current render's state value is a snapshot and does not change immediately",
+        "State can only update inside useEffect",
+        "console.log cannot display React state"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is the advantage of using a functional update like setCount(count => count + 1)?",
+      "options": [
+        "It calculates the next state from the latest queued previous state",
+        "It prevents all re-renders",
+        "It converts state into a ref",
+        "It makes the state global"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why is copying props into state often discouraged?",
+      "options": [
+        "Props cannot contain objects",
+        "It can create duplicate sources of truth that become out of sync",
+        "State cannot contain prop values",
+        "React automatically deletes copied props"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What happens when a component's key changes?",
+      "options": [
+        "React preserves all of its state",
+        "React treats it as a different component and resets its state",
+        "Only its CSS changes",
+        "Nothing happens"
+      ],
+      "correctOption": 1,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why can a missing dependency in useEffect cause bugs?",
+      "options": [
+        "The effect may keep using stale values instead of synchronizing when those values change",
+        "The component can no longer receive props",
+        "React deletes the dependency",
+        "It automatically causes an infinite loop"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "What is a custom hook primarily used for?",
+      "options": [
+        "Sharing reusable stateful logic between components",
+        "Sharing JSX without components",
+        "Replacing JavaScript functions",
+        "Creating global CSS"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
+    },
+    {
+      "question": "Why is AbortController useful when fetching data inside an effect?",
+      "options": [
+        "It can cancel a request when it is no longer needed",
+        "It automatically retries failed requests",
+        "It caches every response",
+        "It converts fetch into synchronous code"
+      ],
+      "correctOption": 0,
+      "points": 30,
+      "level": "hard"
     }
   ]
 }

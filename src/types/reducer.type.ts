@@ -1,14 +1,17 @@
 import { Question } from "./question.type";
 
+export type Level = "all" | "easy" | "medium" | "hard";
+
 export type Action =
   | { type: "dataReceived"; payload: Question[] }
   | { type: "dataFailed"; payload: string }
-  | { type: "start" }
+  | { type: "start"; payload: Question[] }
   | { type: "newAnswer"; payload: number }
   | { type: "nextQuestion" }
   | { type: "finish" }
   | { type: "restart" }
-  | { type: "tick" };
+  | { type: "tick" }
+  | { type: "filter"; payload: Level };
 
 type Status = "loading" | "ready" | "error" | "active" | "finished";
 export type State = {
@@ -20,4 +23,6 @@ export type State = {
   points: number;
   highScore: number;
   secondsRemaining: number;
+  filterBy: Level;
+  quizQuestions: Question[];
 };

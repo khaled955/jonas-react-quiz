@@ -13,11 +13,11 @@ import FinishScreen from "./components/finish-screen";
 import Footer from "./components/footer";
 import Timer from "./components/timer";
 import { SECS_PER_QUESTION } from "./constants/app.constant";
-// Types
 
-// Variables
+// Initial State
 const initialState: State = {
   questions: [],
+  quizQuestions: [],
   error: null,
   status: "loading",
   index: 0,
@@ -25,94 +25,146 @@ const initialState: State = {
   points: 0,
   highScore: 0,
   secondsRemaining: 0,
+  filterBy: "all",
 };
 
+// Reducer
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "dataReceived":
-      return { ...state, questions: action.payload, status: "ready" };
+      return {
+        ...state,
+        questions: action.payload,
+        status: "ready",
+      };
 
     case "dataFailed":
-      return { ...state, error: action.payload, status: "error" };
+      return {
+        ...state,
+        error: action.payload,
+        status: "error",
+      };
+
+    case "filter":
+      return {
+        ...state,
+        filterBy: action.payload,
+      };
 
     case "start":
       return {
         ...state,
+        quizQuestions: action.payload,
         status: "active",
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+        index: 0,
+        answer: null,
+        points: 0,
+        secondsRemaining: action.payload.length * SECS_PER_QUESTION,
       };
 
     case "newAnswer": {
-      const question = state.questions[state.index];
+      const question = state.quizQuestions[state.index];
+
       return {
         ...state,
         answer: action.payload,
         points:
           question.correctOption === action.payload
-            ? question.points + state.points
+            ? state.points + question.points
             : state.points,
       };
     }
+
     case "nextQuestion":
-      return { ...state, index: state.index + 1, answer: null };
+      return {
+        ...state,
+        index: state.index + 1,
+        answer: null,
+      };
+
     case "finish":
       return {
         ...state,
         status: "finished",
-        highScore:
-          state.highScore > state.points ? state.highScore : state.points,
+        highScore: Math.max(state.highScore, state.points),
       };
+
     case "restart":
       return {
-        ...initialState,
-        questions: state.questions,
-        highScore: state.highScore,
+        ...state,
+        quizQuestions: [],
         status: "ready",
+        index: 0,
+        answer: null,
+        points: 0,
+        secondsRemaining: 0,
       };
+
     case "tick":
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,
-        status: state.secondsRemaining === 0 ? "finished" : state.status,
+        status: state.secondsRemaining <= 1 ? "finished" : state.status,
       };
+
     default:
-      throw new Error("unknown action");
+      throw new Error("Unknown action");
   }
 }
 
 export default function App() {
-  // States
+  // State
   const [
     {
       error,
       status,
       questions,
+      quizQuestions,
       index,
       answer,
       points,
       highScore,
       secondsRemaining,
+      filterBy,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  // Variables
-  const maxPossiblePoints = questions.reduce(
-    (acc, curr) => acc + curr.points,
+  // Filter questions before starting the quiz
+  const filteredQuestions =
+    filterBy === "all"
+      ? questions
+      : questions.filter((question) => question.level === filterBy);
+
+  // Calculate values from the actual quiz questions
+  const maxPossiblePoints = quizQuestions.reduce(
+    (acc, question) => acc + question.points,
     0,
   );
-  const displayNextButton = status === "active" && index < questions.length - 1;
+
+  const displayNextButton =
+    status === "active" && index < quizQuestions.length - 1;
+
   const displayFinishButton =
-    status === "active" && index === questions.length - 1;
-  // Effects
+    status === "active" && index === quizQuestions.length - 1;
+
+  // Fetch Questions
   useEffect(() => {
     async function fetchQuestions() {
       try {
         const questions = await fetchQuestionsApi();
-        dispatch({ type: "dataReceived", payload: questions });
+
+        dispatch({
+          type: "dataReceived",
+          payload: questions,
+        });
       } catch (error) {
-        if (error instanceof Error)
-          dispatch({ type: "dataFailed", payload: error.message });
+        if (error instanceof Error) {
+          dispatch({
+            type: "dataFailed",
+            payload: error.message,
+          });
+        }
       }
     }
 
@@ -125,10 +177,17 @@ export default function App() {
 
       <Main>
         {status === "loading" && <Loader />}
+
         {status === "error" && <ErrorMessage errorMsg={error!} />}
+
         {status === "ready" && (
-          <StartScreen numQuestions={questions.length} dispatch={dispatch} />
+          <StartScreen
+            numQuestions={filteredQuestions.length}
+            filteredQuestions={filteredQuestions}
+            dispatch={dispatch}
+          />
         )}
+
         {status === "active" && (
           <>
             <Progress
@@ -136,10 +195,11 @@ export default function App() {
               maxPossiblePoints={maxPossiblePoints}
               index={index}
               points={points}
-              numQuestions={questions.length}
+              numQuestions={quizQuestions.length}
             />
+
             <Question
-              question={questions[index]}
+              question={quizQuestions[index]}
               dispatch={dispatch}
               answer={answer}
             />
@@ -150,11 +210,13 @@ export default function App() {
           {status === "active" && (
             <Timer dispatch={dispatch} secondsRemaing={secondsRemaining} />
           )}
+
           {displayNextButton && (
             <Button onClick={() => dispatch({ type: "nextQuestion" })}>
               Next
             </Button>
           )}
+
           {displayFinishButton && (
             <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
           )}
