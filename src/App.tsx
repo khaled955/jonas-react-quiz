@@ -2,28 +2,21 @@ import { useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import Main from "./components/main";
 import { fetchQuestionsApi } from "./services/question-api-service";
-import { Question } from "./types/question.type";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/Error-message";
 import StartScreen from "./components/start-screen";
+import Question from "./components/question";
+import { Action, State } from "./types/reducer.type";
 // Types
-type Action =
-  | { type: "dataLoading" }
-  | { type: "dataReceived"; payload: Question[] }
-  | { type: "dataFailed"; payload: string };
-
-type Status = "loading" | "ready" | "error" | "active" | "finished";
-type State = {
-  questions: Question[];
-  error: string | null;
-  status: Status;
-};
 
 // Variables
 const initialState: State = {
   questions: [],
   error: null,
   status: "loading",
+  index: 0,
+  answer: null,
+  points: 0,
 };
 
 function reducer(state: State, action: Action): State {
@@ -34,6 +27,20 @@ function reducer(state: State, action: Action): State {
     case "dataFailed":
       return { ...state, error: action.payload, status: "error" };
 
+    case "start":
+      return { ...state, status: "active" };
+
+    case "newAnswer": {
+      const question = state.questions[state.index];
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          question.correctOption === action.payload
+            ? question.points + state.points
+            : state.points,
+      };
+    }
     default:
       throw new Error("unknown action");
   }
@@ -41,7 +48,7 @@ function reducer(state: State, action: Action): State {
 
 export default function App() {
   // States
-  const [{ error, status, questions }, dispatch] = useReducer(
+  const [{ error, status, questions, index, answer }, dispatch] = useReducer(
     reducer,
     initialState,
   );
@@ -55,8 +62,6 @@ export default function App() {
       } catch (error) {
         if (error instanceof Error)
           dispatch({ type: "dataFailed", payload: error.message });
-      } finally {
-        console.log("");
       }
     }
 
@@ -70,7 +75,16 @@ export default function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <ErrorMessage errorMsg={error!} />}
-        {status === "ready" && <StartScreen numQuestions={questions.length} />}
+        {status === "ready" && (
+          <StartScreen numQuestions={questions.length} dispatch={dispatch} />
+        )}
+        {status === "active" && (
+          <Question
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
+        )}
       </Main>
     </div>
   );
