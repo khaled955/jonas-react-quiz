@@ -7,7 +7,8 @@ export type Action =
   | { type: "newAnswer"; payload: number }
   | { type: "nextQuestion" }
   | { type: "finish" }
-  | { type: "restart" };
+  | { type: "restart" }
+  | { type: "tick" };
 
 type Status = "loading" | "ready" | "error" | "active" | "finished";
 export type State = {
@@ -18,4 +19,5 @@ export type State = {
   answer: null | number;
   points: number;
   highScore: number;
+  secondsRemaining: number;
 };

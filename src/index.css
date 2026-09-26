@@ -112,6 +112,7 @@ progress {
   background-color: var(--color-medium);
   border-radius: 100px;
 }
+
 ::-webkit-progress-value {
   background-color: var(--color-theme);
   border-radius: 100px;
@@ -165,6 +166,7 @@ progress {
   border: 2px solid var(--color-theme);
   color: var(--color-light);
 }
+
 .btn-option.wrong {
   background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
@@ -203,7 +205,6 @@ progress {
   align-items: center;
   margin-top: 4rem;
   gap: 1.6rem;
-
   color: var(--color-medium);
   font-size: 1.4rem;
 }
@@ -237,18 +238,21 @@ progress {
       50% 50%,
       100% 50%;
   }
+
   40% {
     background-position:
       0% 100%,
       50% 0%,
       100% 50%;
   }
+
   60% {
     background-position:
       0% 50%,
       50% 100%,
       100% 0%;
   }
+
   80% {
     background-position:
       0% 50%,
@@ -272,4 +276,184 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+/* ======================================== */
+/* RESPONSIVE */
+/* ======================================== */
+
+/* Tablets */
+@media (max-width: 700px) {
+  body {
+    padding: 2.4rem;
+  }
+
+  .app-header {
+    width: 100%;
+    max-width: 50rem;
+    margin-bottom: 3rem;
+  }
+
+  .main {
+    width: 100%;
+    max-width: 50rem;
+  }
+
+  img {
+    width: 11rem;
+  }
+
+  h1 {
+    font-size: 4.4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  html {
+    font-size: 56.25%;
+  }
+
+  body {
+    padding: 2rem 1.6rem;
+  }
+
+  .app-header {
+    width: 100%;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  img {
+    width: 8rem;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 2.8rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  .start {
+    text-align: center;
+  }
+
+  .progress {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    font-size: 1.8rem;
+    padding: 1.1rem 2rem;
+  }
+
+  .btn-option:not([disabled]):hover {
+    transform: none;
+  }
+
+  .answer {
+    transform: translateX(1rem);
+  }
+
+  .result {
+    font-size: 1.8rem;
+    padding: 1.6rem 1.2rem;
+    border-radius: 2rem;
+  }
+
+  .result span {
+    font-size: 2rem;
+  }
+
+  .highscore {
+    font-size: 1.7rem;
+    margin-bottom: 3.2rem;
+  }
+
+  .timer {
+    font-size: 1.6rem;
+    padding: 1.2rem 2rem;
+  }
+
+  .error {
+    font-size: 1.5rem;
+    padding: 1.6rem;
+  }
+
+  .counter {
+    margin: 3rem 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+  body {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .app-header {
+    gap: 0.8rem;
+  }
+
+  img {
+    width: 6.5rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.9rem;
+  }
+
+  .progress {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 1.7rem;
+    padding: 1rem 1.6rem;
+  }
+
+  .timer {
+    font-size: 1.5rem;
+    padding: 1rem 1.6rem;
+  }
+
+  .result {
+    font-size: 1.7rem;
+  }
 }

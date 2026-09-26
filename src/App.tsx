@@ -10,6 +10,9 @@ import { Action, State } from "./types/reducer.type";
 import Button from "./components/button";
 import Progress from "./components/progress";
 import FinishScreen from "./components/finish-screen";
+import Footer from "./components/footer";
+import Timer from "./components/timer";
+import { SECS_PER_QUESTION } from "./constants/app.constant";
 // Types
 
 // Variables
@@ -21,6 +24,7 @@ const initialState: State = {
   answer: null,
   points: 0,
   highScore: 0,
+  secondsRemaining: 0,
 };
 
 function reducer(state: State, action: Action): State {
@@ -32,7 +36,11 @@ function reducer(state: State, action: Action): State {
       return { ...state, error: action.payload, status: "error" };
 
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+      };
 
     case "newAnswer": {
       const question = state.questions[state.index];
@@ -61,6 +69,12 @@ function reducer(state: State, action: Action): State {
         highScore: state.highScore,
         status: "ready",
       };
+    case "tick":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? "finished" : state.status,
+      };
     default:
       throw new Error("unknown action");
   }
@@ -69,7 +83,16 @@ function reducer(state: State, action: Action): State {
 export default function App() {
   // States
   const [
-    { error, status, questions, index, answer, points, highScore },
+    {
+      error,
+      status,
+      questions,
+      index,
+      answer,
+      points,
+      highScore,
+      secondsRemaining,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -123,14 +146,19 @@ export default function App() {
           </>
         )}
 
-        {displayNextButton && (
-          <Button onClick={() => dispatch({ type: "nextQuestion" })}>
-            Next
-          </Button>
-        )}
-        {displayFinishButton && (
-          <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
-        )}
+        <Footer>
+          {status === "active" && (
+            <Timer dispatch={dispatch} secondsRemaing={secondsRemaining} />
+          )}
+          {displayNextButton && (
+            <Button onClick={() => dispatch({ type: "nextQuestion" })}>
+              Next
+            </Button>
+          )}
+          {displayFinishButton && (
+            <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
+          )}
+        </Footer>
 
         {status === "finished" && (
           <FinishScreen
