@@ -9,13 +9,15 @@ type OptionsProps = {
 
 export default function Options({ question, dispatch, answer }: OptionsProps) {
   // Variables
-  const hasAnswer = Boolean(answer);
+  const hasAnswer = answer !== null;
   return (
     <div className="options">
       {question.options.map((option, index) => (
         <button
           disabled={hasAnswer}
-          onClick={() => dispatch({ type: "newAnswer", payload: index })}
+          onClick={() => {
+            dispatch({ type: "newAnswer", payload: index });
+          }}
           className={`btn btn-option ${index === answer ? "answer" : ""} ${hasAnswer ? (index === question.correctOption ? "correct" : "wrong") : ""}`}
           key={option}
         >

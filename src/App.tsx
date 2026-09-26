@@ -7,6 +7,9 @@ import ErrorMessage from "./components/Error-message";
 import StartScreen from "./components/start-screen";
 import Question from "./components/question";
 import { Action, State } from "./types/reducer.type";
+import Button from "./components/button";
+import Progress from "./components/progress";
+import FinishScreen from "./components/finish-screen";
 // Types
 
 // Variables
@@ -17,6 +20,7 @@ const initialState: State = {
   index: 0,
   answer: null,
   points: 0,
+  highScore: 0,
 };
 
 function reducer(state: State, action: Action): State {
@@ -41,6 +45,22 @@ function reducer(state: State, action: Action): State {
             : state.points,
       };
     }
+    case "nextQuestion":
+      return { ...state, index: state.index + 1, answer: null };
+    case "finish":
+      return {
+        ...state,
+        status: "finished",
+        highScore:
+          state.highScore > state.points ? state.highScore : state.points,
+      };
+    case "restart":
+      return {
+        ...initialState,
+        questions: state.questions,
+        highScore: state.highScore,
+        status: "ready",
+      };
     default:
       throw new Error("unknown action");
   }
@@ -48,11 +68,19 @@ function reducer(state: State, action: Action): State {
 
 export default function App() {
   // States
-  const [{ error, status, questions, index, answer }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [
+    { error, status, questions, index, answer, points, highScore },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
+  // Variables
+  const maxPossiblePoints = questions.reduce(
+    (acc, curr) => acc + curr.points,
+    0,
+  );
+  const displayNextButton = status === "active" && index < questions.length - 1;
+  const displayFinishButton =
+    status === "active" && index === questions.length - 1;
   // Effects
   useEffect(() => {
     async function fetchQuestions() {
@@ -79,10 +107,37 @@ export default function App() {
           <StartScreen numQuestions={questions.length} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <Question
-            question={questions[index]}
+          <>
+            <Progress
+              answer={answer}
+              maxPossiblePoints={maxPossiblePoints}
+              index={index}
+              points={points}
+              numQuestions={questions.length}
+            />
+            <Question
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+          </>
+        )}
+
+        {displayNextButton && (
+          <Button onClick={() => dispatch({ type: "nextQuestion" })}>
+            Next
+          </Button>
+        )}
+        {displayFinishButton && (
+          <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
+        )}
+
+        {status === "finished" && (
+          <FinishScreen
+            highScore={highScore}
+            points={points}
+            maxPossiblePoints={maxPossiblePoints}
             dispatch={dispatch}
-            answer={answer}
           />
         )}
       </Main>

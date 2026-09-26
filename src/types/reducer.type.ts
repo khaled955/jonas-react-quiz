@@ -4,7 +4,10 @@ export type Action =
   | { type: "dataReceived"; payload: Question[] }
   | { type: "dataFailed"; payload: string }
   | { type: "start" }
-  | { type: "newAnswer"; payload: number };
+  | { type: "newAnswer"; payload: number }
+  | { type: "nextQuestion" }
+  | { type: "finish" }
+  | { type: "restart" };
 
 type Status = "loading" | "ready" | "error" | "active" | "finished";
 export type State = {
@@ -14,4 +17,5 @@ export type State = {
   index: number;
   answer: null | number;
   points: number;
+  highScore: number;
 };
